@@ -1,0 +1,21 @@
+name: EditorConfig Check
+
+on: [push, pull_request]
+
+jobs:
+  check-editorconfig:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install eclint
+      run: npm install -g eclint
+    
+    - name: Check code against .editorconfig
+      run: eclint check .
+    
+    - name: Fail if eclint check fails
+      if: failure()
+      run: echo "Code does not conform to .editorconfig" && exit 1
