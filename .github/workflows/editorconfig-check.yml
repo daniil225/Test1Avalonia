@@ -22,9 +22,9 @@ jobs:
         with:
           dotnet-version: '8.0'
 
-      - name: Install EditorConfig tool
+      - name: Install EditorConfig Checker CLI
         run: |
-          dotnet tool install --global EditorConfigChecker
+          choco install editorconfig-checker-cli
 
       - name: Run EditorConfig checks
         run: |
