@@ -6,7 +6,7 @@ on:
   branches: [master]
   
   push:
-  branches: [master, TestBranch]
+  branches: [TestBranch]
 
 jobs:
   build:
