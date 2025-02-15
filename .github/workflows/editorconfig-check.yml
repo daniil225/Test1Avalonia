@@ -1,35 +1,23 @@
-name: Check .editorconfig
+name: dotnet format
 
 on: 
   pull_request:
-    paths:
-      - '**/*.cs'
+    branches: ["master"]
   push:
-    paths:
-      - '**/*.cs'
-    branches:
-      - master
-      - TestBranch
+    branches: ["master", "TestBranch"]
 
 jobs:
-  check-editorconfig:
+  check-format:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
+          with:
+          dotnet-version: '8.0.x'
+       
+      - name: Check out code
+        uses: actions/checkout@v3
+       
+      - name: Run dotnet format
+        run: dotnet format --no-restore --verify-no-changes
 
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-      - name: Install eclint
-        run: npm install -g eclint
-
-      - name: Check code against .editorconfig
-        run: eclint check .
-
-      - name: Fail if eclint check fails
-        if: failure()
-        run: echo "Code does not conform to .editorconfig" && exit 1
