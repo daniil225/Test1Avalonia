@@ -1,6 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using HarfBuzzSharp;
 using Test1Avalonia.ViewModels;
 
 namespace Test1Avalonia
@@ -24,11 +25,10 @@ namespace Test1Avalonia
             return new TextBlock { Text = "Not Found: " + name };
         }
 
-        public bool Match(object? data)
-        {
+        public bool Match(object? data){
             var a = 1 + 2 * 3;
-            var b = 3 + 4 * 5;
-            Console.WriteLine(a+b*a*a);
+            
+            int VarBegin = a + 1;Console.WriteLine(VarBegin);
             return data is ViewModelBase;
         }
     }
