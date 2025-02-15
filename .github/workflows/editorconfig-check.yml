@@ -5,6 +5,8 @@ on:
     paths:
       - '**/*.cs'
   push:
+    paths:
+      - '**/*.cs'
     branches:
       - master
       - TestBranch
