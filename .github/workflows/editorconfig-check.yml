@@ -4,11 +4,7 @@ on:
   pull_request:
     branches: [master]
   push:
-<<<<<<< Updated upstream
-  branches: [TestBranch]
-=======
     branches: [TestBranch]
->>>>>>> Stashed changes
 
 jobs:
   build:
