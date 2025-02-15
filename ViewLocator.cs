@@ -27,7 +27,9 @@ namespace Test1Avalonia
         public bool Match(object? data)
         {
             var a = 1 + 2 * 3;
-            Console.WriteLine(a);
+            var b = 1 + 2*3;
+
+            Console.WriteLine(a+b*a);
             return data is ViewModelBase;
         }
     }
