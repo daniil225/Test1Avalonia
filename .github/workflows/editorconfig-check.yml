@@ -1,28 +1,30 @@
 name: Check .editorconfig
 
-
 on: 
   pull_request:
-  branches: [master]
-  
+    branches: [master]
   push:
+<<<<<<< Updated upstream
   branches: [TestBranch]
+=======
+    branches: [TestBranch]
+>>>>>>> Stashed changes
 
 jobs:
   build:
-  name: Check .editorconfig
-  runs-on: windows-latest
+    name: Check .editorconfig
+    runs-on: windows-latest
 
-  steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-      with: 
-        fetch-depth: 0
-    
-    - name: Check .editorconfig
-      uses: github/super-linter@v4
-      env:
-        VALIDATE_ALL_CODEBASE: false
-        DEFAULT_BRANCH: master
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        EDITORCONFIG_FILE_NAME: .editorconfig
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with: 
+          fetch-depth: 0
+
+      - name: Check .editorconfig
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EDITORCONFIG_FILE_NAME: .editorconfig
