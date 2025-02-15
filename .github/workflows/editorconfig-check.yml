@@ -17,15 +17,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install .NET SDK
-        uses: actions/setup-dotnet@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v2
         with:
-          dotnet-version: '8.0'
+          node-version: '16'
 
-      - name: Install EditorConfig Checker CLI
-        run: |
-          choco install editorconfig-checker-cli
+      - name: Install eclint
+        run: npm install -g eclint
 
-      - name: Run EditorConfig checks
-        run: |
-          editorconfig-checker --path . --output json
+      - name: Check code against .editorconfig
+        run: eclint check .
+
+      - name: Fail if eclint check fails
+        if: failure()
+        run: echo "Code does not conform to .editorconfig" && exit 1
