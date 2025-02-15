@@ -29,7 +29,7 @@ namespace Test1Avalonia
             var a = 1 + 2 * 3;
             var b = 1 + 2*3;
 
-            Console.WriteLine(a+b*a);
+            Console.WriteLine(a+b*a*a);
             return data is ViewModelBase;
         }
     }
