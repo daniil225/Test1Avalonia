@@ -25,11 +25,10 @@ namespace Test1Avalonia
             return new TextBlock { Text = "Not Found: " + name };
         }
 
-        public bool Match(object? data)
-        {
-            //var a = 1 + 2 * 3;
+        public bool Match(object? data) {
+            var a = 1 + 2 * 3;
             
-            //int VarBegin = a + 1;Console.WriteLine(VarBegin);
+            int VarBegin = a + 1;Console.WriteLine(VarBegin);
             return data is ViewModelBase;
         }
     }
