@@ -1,26 +1,31 @@
 name: Check .editorconfig
 
-on: 
-  pull_request:
-    branches: [master]
+on:
   push:
-    branches: [TestBranch]
+    branches:
+      - TestBranch
+      - Geometry
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Check .editorconfig
+  check-editorconfig:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2
-        with: 
-          fetch-depth: 0
 
-      - name: Check .editorconfig
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EDITORCONFIG_FILE_NAME: .editorconfig
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'
+
+      - name: Install EditorConfig tool
+        run: |
+          dotnet tool install --global EditorConfigChecker
+
+      - name: Run EditorConfig checks
+        run: |
+          editorconfig-checker --path . --output json
